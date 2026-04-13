@@ -1,0 +1,29 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+}
+
+model Invitation {
+  id          String   @id @default(cuid())
+  coupleNames String
+  date        DateTime
+  location    String
+  message     String?
+  theme       String   @default("floral")
+  createdAt   DateTime @default(now())
+  
+  guests      Guest[]
+}
+
+model Guest {
+  id           String     @id @default(cuid())
+  invitationId String
+  invitation   Invitation @relation(fields: [invitationId], references: [id], onDelete: Cascade)
+  name         String
+  attending    Boolean
+  note         String?
+  createdAt    DateTime   @default(now())
+}
