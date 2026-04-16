@@ -45,6 +45,18 @@ export default function CreateInvite() {
         </div>
 
         <div className="form-group">
+          <label className="form-label" htmlFor="image">Custom Background Image (Optional)</label>
+          <input 
+            type="file" 
+            id="image"
+            name="image" 
+            className="form-input" 
+            accept="image/*"
+            style={{ padding: '0.8rem' }}
+          />
+        </div>
+
+        <div className="form-group">
           <label className="form-label" htmlFor="message">Welcome Message (Optional)</label>
           <textarea 
             id="message"

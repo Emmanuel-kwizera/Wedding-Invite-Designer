@@ -9,12 +9,22 @@ export async function createInvite(formData) {
   const location = formData.get("location");
   const message = formData.get("message") || "";
   
+  let imageUrl = null;
+  const imageField = formData.get("image");
+  if (imageField && imageField.size > 0) {
+    const arrayBuffer = await imageField.arrayBuffer();
+    const buffer = Buffer.from(arrayBuffer);
+    const base64 = buffer.toString('base64');
+    imageUrl = `data:${imageField.type};base64,${base64}`;
+  }
+  
   const invite = await prisma.invitation.create({
     data: {
       coupleNames,
       date: new Date(dateStr),
       location,
       message,
+      imageUrl,
     }
   });
   
