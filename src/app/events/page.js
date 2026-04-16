@@ -1,5 +1,6 @@
 import { prisma } from "../../lib/prisma";
 import Link from 'next/link';
+import { getBaseUrl } from '../../lib/utils';
 
 export default async function EventsList() {
   // Fetch all invitations, ordering by the most recently created
@@ -22,7 +23,7 @@ export default async function EventsList() {
       {invites.length === 0 ? (
         <div className="glass-card" style={{ textAlign: 'center', padding: '3rem' }}>
           <p style={{ color: 'var(--text-light)' }}>No events have been created yet.</p>
-          <Link href="/create">
+          <Link href={`${getBaseUrl()}/create`}>
             <button className="btn-primary" style={{ marginTop: '1.5rem' }}>Create the first one</button>
           </Link>
         </div>
@@ -44,12 +45,12 @@ export default async function EventsList() {
               </p>
               
               <div style={{ display: 'flex', gap: '0.5rem', marginTop: 'auto' }}>
-                <Link href={`/dashboard/${invite.id}`} style={{ flex: 1 }}>
+                <Link href={`${getBaseUrl()}/dashboard/${invite.id}`} style={{ flex: 1 }}>
                   <button className="btn-primary" style={{ width: '100%', padding: '0.6rem', fontSize: '0.85rem' }}>
                     View RSVPs
                   </button>
                 </Link>
-                <Link href={`/invite/${invite.id}`} style={{ flex: 1 }}>
+                <Link href={`${getBaseUrl()}/invite/${invite.id}`} style={{ flex: 1 }}>
                   <button className="btn-secondary" style={{ width: '100%', padding: '0.6rem', fontSize: '0.85rem' }}>
                     Invitation
                   </button>

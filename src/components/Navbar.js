@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { getBaseUrl } from '../lib/utils';
 
 export default function Navbar() {
   return (
@@ -19,20 +20,20 @@ export default function Navbar() {
         justifyContent: 'space-between',
         alignItems: 'center'
       }}>
-        <Link href="/" style={{ textDecoration: 'none', color: 'var(--text-dark)' }}>
+        <Link href={`${getBaseUrl()}/`} style={{ textDecoration: 'none', color: 'var(--text-dark)' }}>
           <span style={{ fontFamily: '"Playfair Display", serif', fontSize: '1.5rem', fontWeight: 700, letterSpacing: '-0.02em', color: 'var(--primary)' }}>
             Aura
           </span>
         </Link>
         
         <div style={{ display: 'flex', gap: '1.5rem', alignItems: 'center' }}>
-          <Link href="/" style={{ textDecoration: 'none', color: 'var(--text-dark)', fontWeight: 500, fontSize: '0.95rem' }}>
+          <Link href={`${getBaseUrl()}/`} style={{ textDecoration: 'none', color: 'var(--text-dark)', fontWeight: 500, fontSize: '0.95rem' }}>
             Home
           </Link>
-          <Link href="/events" style={{ textDecoration: 'none', color: 'var(--text-dark)', fontWeight: 500, fontSize: '0.95rem' }}>
+          <Link href={`${getBaseUrl()}/events`} style={{ textDecoration: 'none', color: 'var(--text-dark)', fontWeight: 500, fontSize: '0.95rem' }}>
             Events
           </Link>
-          <Link href="/create">
+          <Link href={`${getBaseUrl()}/create`}>
             <button className="btn-primary" style={{ padding: '0.5rem 1.2rem', fontSize: '0.9rem' }}>
               Create Invite
             </button>

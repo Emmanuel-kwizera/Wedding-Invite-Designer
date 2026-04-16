@@ -1,4 +1,5 @@
 import Link from 'next/link';
+import { getBaseUrl } from '../lib/utils';
 
 export default function Home() {
   return (
@@ -12,7 +13,7 @@ export default function Home() {
       
       <div className="glass-card fade-in delay-2" style={{ padding: '3rem', maxWidth: '500px', width: '100%' }}>
         <h3 style={{ marginBottom: '1.5rem' }}>Ready to invite your guests?</h3>
-        <Link href="/create">
+        <Link href={`${getBaseUrl()}/create`}>
           <button className="btn-primary" style={{ width: '100%', fontSize: '1.1rem', padding: '1rem' }}>
             Create Your Invitation
           </button>
