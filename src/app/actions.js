@@ -1,4 +1,5 @@
 import { redirect } from "next/navigation";
+import { revalidatePath } from "next/cache";
 import { prisma } from "../lib/prisma";
 
 export async function createInvite(formData) {
@@ -53,4 +54,16 @@ export async function submitRsvp(formData) {
   // Revalidate path is optional, but helps cache invalidation. Since we redirect or show success, it's fine.
   // We will redirect them back to the invite with a success flag
   redirect(`/invite/${invitationId}?success=true`);
+}
+
+export async function deleteInvite(invitationId) {
+  "use server";
+  
+  await prisma.invitation.delete({
+    where: {
+      id: invitationId
+    }
+  });
+  
+  revalidatePath('/admin');
 }

@@ -17,7 +17,9 @@ export default async function Dashboard({ params }) {
   const declinedCount = invite.guests.filter((g) => !g.attending).length;
 
   // Getting domain safely depending on prod vercel or localhost
-  const appUrl = process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` : "http://localhost:3000";
+  const appUrl = process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL
+    ? `https://${process.env.NEXT_PUBLIC_VERCEL_PROJECT_PRODUCTION_URL}`
+    : (process.env.NEXT_PUBLIC_VERCEL_URL ? `https://${process.env.NEXT_PUBLIC_VERCEL_URL}` : "http://localhost:3000");
 
   return (
     <div style={{ maxWidth: '900px', margin: '4rem auto', padding: '0 1rem' }} className="fade-in">
