@@ -29,6 +29,7 @@ export async function createInvite(formData) {
     }
   });
   
+  revalidatePath('/admin');
   redirect(`/dashboard/${invite.id}`);
 }
 
@@ -50,6 +51,9 @@ export async function submitRsvp(formData) {
       note,
     }
   });
+
+  revalidatePath('/admin');
+  revalidatePath(`/dashboard/${invitationId}`);
 
   // Revalidate path is optional, but helps cache invalidation. Since we redirect or show success, it's fine.
   // We will redirect them back to the invite with a success flag

@@ -1,6 +1,8 @@
 import { prisma } from "../../lib/prisma";
 import { deleteInvite } from "../actions";
 
+export const dynamic = "force-dynamic";
+
 export default async function AdminDashboard() {
   const invitations = await prisma.invitation.findMany({
     orderBy: { createdAt: 'desc' },
